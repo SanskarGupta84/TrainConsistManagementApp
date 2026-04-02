@@ -40,14 +40,40 @@ public class TrainConsistManagementApp {
     // =========================
     Set<String> bogieIds = new HashSet<>();
 
-    // Add IDs (with duplicates)
     bogieIds.add("BG101");
     bogieIds.add("BG102");
     bogieIds.add("BG103");
     bogieIds.add("BG101"); // duplicate
-    bogieIds.add("BG102"); // duplicate
 
-    System.out.println("\nUnique Bogie IDs (duplicates removed automatically):");
+    System.out.println("\nUnique Bogie IDs:");
     System.out.println(bogieIds);
+
+    // =========================
+    // UC4: Ordered Train Consist
+    // =========================
+    LinkedList<String> consist = new LinkedList<>();
+
+    // Add bogies
+    consist.add("Engine");
+    consist.add("Sleeper");
+    consist.add("AC");
+    consist.add("Cargo");
+    consist.add("Guard");
+
+    System.out.println("\nInitial Train Consist:");
+    System.out.println(consist);
+
+    // Insert Pantry Car at position 2
+    consist.add(2, "Pantry");
+
+    System.out.println("\nAfter adding Pantry at position 2:");
+    System.out.println(consist);
+
+    // Remove first and last
+    consist.removeFirst();
+    consist.removeLast();
+
+    System.out.println("\nFinal Train Consist:");
+    System.out.println(consist);
   }
 }
