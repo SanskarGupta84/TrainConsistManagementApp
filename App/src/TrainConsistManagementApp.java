@@ -21,9 +21,17 @@ public class TrainConsistManagementApp {
     passengerBogies.add("AC Chair");
     passengerBogies.add("First Class");
 
+    System.out.println("\nPassenger Bogies after addition:");
+    System.out.println(passengerBogies);
+
     passengerBogies.remove("AC Chair");
 
-    System.out.println("\nPassenger Bogies:");
+    System.out.println("\nPassenger Bogies after removal:");
+    System.out.println(passengerBogies);
+
+    System.out.println("\nIs Sleeper present? " + passengerBogies.contains("Sleeper"));
+
+    System.out.println("Final Passenger Bogie List:");
     System.out.println(passengerBogies);
 
     // =========================
@@ -33,13 +41,14 @@ public class TrainConsistManagementApp {
 
     bogieIds.add("BG101");
     bogieIds.add("BG102");
+    bogieIds.add("BG103");
     bogieIds.add("BG101"); // duplicate
 
     System.out.println("\nUnique Bogie IDs:");
     System.out.println(bogieIds);
 
     // =========================
-    // UC4: LinkedList (Ordered)
+    // UC4: Ordered Train Consist (LinkedList)
     // =========================
     LinkedList<String> consist = new LinkedList<>();
 
@@ -49,7 +58,14 @@ public class TrainConsistManagementApp {
     consist.add("Cargo");
     consist.add("Guard");
 
+    System.out.println("\nInitial Train Consist:");
+    System.out.println(consist);
+
     consist.add(2, "Pantry");
+
+    System.out.println("\nAfter adding Pantry:");
+    System.out.println(consist);
+
     consist.removeFirst();
     consist.removeLast();
 
@@ -57,7 +73,7 @@ public class TrainConsistManagementApp {
     System.out.println(consist);
 
     // =========================
-    // UC5: LinkedHashSet
+    // UC5: LinkedHashSet (Ordered + Unique)
     // =========================
     Set<String> formation = new LinkedHashSet<>();
 
@@ -67,7 +83,7 @@ public class TrainConsistManagementApp {
     formation.add("Guard");
     formation.add("Sleeper"); // duplicate ignored
 
-    System.out.println("\nTrain Formation:");
+    System.out.println("\nTrain Formation (LinkedHashSet):");
     System.out.println(formation);
 
     // =========================
@@ -75,16 +91,53 @@ public class TrainConsistManagementApp {
     // =========================
     Map<String, Integer> bogieCapacity = new HashMap<>();
 
-    // Add capacities
     bogieCapacity.put("Sleeper", 72);
     bogieCapacity.put("AC Chair", 60);
     bogieCapacity.put("First Class", 40);
 
     System.out.println("\nBogie Capacity Details:");
 
-    // Iterate using entrySet
     for (Map.Entry<String, Integer> entry : bogieCapacity.entrySet()) {
       System.out.println(entry.getKey() + " → Capacity: " + entry.getValue());
     }
+
+    // =========================
+    // UC7: Sort Bogies by Capacity
+    // =========================
+    List<Bogie> bogieList = new ArrayList<>();
+
+    bogieList.add(new Bogie("Sleeper", 72));
+    bogieList.add(new Bogie("AC Chair", 60));
+    bogieList.add(new Bogie("First Class", 40));
+
+    // Sort by capacity
+    bogieList.sort(Comparator.comparingInt(Bogie::getCapacity));
+
+    System.out.println("\nBogies Sorted by Capacity:");
+
+    for (Bogie b : bogieList) {
+      System.out.println(b.getName() + " → Capacity: " + b.getCapacity());
+    }
+  }
+}
+
+// =========================
+// Bogie Class (UC7)
+// =========================
+class Bogie {
+  private String name;
+  private int capacity;
+
+  public Bogie(String name, int capacity) {
+    this.name = name;
+    this.capacity = capacity;
+  }
+
+  public String getName() {
+    return name;
+  }
+
+  public int getCapacity() {
+    return capacity;
   }
 }
