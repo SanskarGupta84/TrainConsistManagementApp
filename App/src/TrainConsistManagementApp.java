@@ -21,32 +21,25 @@ public class TrainConsistManagementApp {
     passengerBogies.add("AC Chair");
     passengerBogies.add("First Class");
 
-    System.out.println("\nPassenger Bogies after addition:");
-    System.out.println(passengerBogies);
-
     passengerBogies.remove("AC Chair");
 
-    System.out.println("\nPassenger Bogies after removal:");
-    System.out.println(passengerBogies);
-
-    System.out.println("\nIs Sleeper present? " + passengerBogies.contains("Sleeper"));
-    System.out.println("Final Passenger Bogie List:");
+    System.out.println("\nPassenger Bogies:");
     System.out.println(passengerBogies);
 
     // =========================
     // UC3: Unique Bogie IDs
     // =========================
     Set<String> bogieIds = new HashSet<>();
+
     bogieIds.add("BG101");
     bogieIds.add("BG102");
-    bogieIds.add("BG103");
     bogieIds.add("BG101"); // duplicate
 
     System.out.println("\nUnique Bogie IDs:");
     System.out.println(bogieIds);
 
     // =========================
-    // UC4: Ordered Train Consist
+    // UC4: LinkedList (Ordered)
     // =========================
     LinkedList<String> consist = new LinkedList<>();
 
@@ -60,24 +53,38 @@ public class TrainConsistManagementApp {
     consist.removeFirst();
     consist.removeLast();
 
-    System.out.println("\nFinal Train Consist (LinkedList):");
+    System.out.println("\nFinal Train Consist:");
     System.out.println(consist);
 
     // =========================
-    // UC5: LinkedHashSet (Ordered + Unique)
+    // UC5: LinkedHashSet
     // =========================
     Set<String> formation = new LinkedHashSet<>();
 
-    // Add bogies
     formation.add("Engine");
     formation.add("Sleeper");
     formation.add("Cargo");
     formation.add("Guard");
+    formation.add("Sleeper"); // duplicate ignored
 
-    // Add duplicate
-    formation.add("Sleeper"); // ignored automatically
-
-    System.out.println("\nTrain Formation using LinkedHashSet:");
+    System.out.println("\nTrain Formation:");
     System.out.println(formation);
+
+    // =========================
+    // UC6: HashMap (Bogie → Capacity)
+    // =========================
+    Map<String, Integer> bogieCapacity = new HashMap<>();
+
+    // Add capacities
+    bogieCapacity.put("Sleeper", 72);
+    bogieCapacity.put("AC Chair", 60);
+    bogieCapacity.put("First Class", 40);
+
+    System.out.println("\nBogie Capacity Details:");
+
+    // Iterate using entrySet
+    for (Map.Entry<String, Integer> entry : bogieCapacity.entrySet()) {
+      System.out.println(entry.getKey() + " → Capacity: " + entry.getValue());
+    }
   }
 }
