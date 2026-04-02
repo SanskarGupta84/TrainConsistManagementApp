@@ -29,17 +29,14 @@ public class TrainConsistManagementApp {
     System.out.println("\nPassenger Bogies after removal:");
     System.out.println(passengerBogies);
 
-    boolean exists = passengerBogies.contains("Sleeper");
-    System.out.println("\nIs Sleeper present? " + exists);
-
-    System.out.println("\nFinal Passenger Bogie List:");
+    System.out.println("\nIs Sleeper present? " + passengerBogies.contains("Sleeper"));
+    System.out.println("Final Passenger Bogie List:");
     System.out.println(passengerBogies);
 
     // =========================
     // UC3: Unique Bogie IDs
     // =========================
     Set<String> bogieIds = new HashSet<>();
-
     bogieIds.add("BG101");
     bogieIds.add("BG102");
     bogieIds.add("BG103");
@@ -53,27 +50,34 @@ public class TrainConsistManagementApp {
     // =========================
     LinkedList<String> consist = new LinkedList<>();
 
-    // Add bogies
     consist.add("Engine");
     consist.add("Sleeper");
     consist.add("AC");
     consist.add("Cargo");
     consist.add("Guard");
 
-    System.out.println("\nInitial Train Consist:");
-    System.out.println(consist);
-
-    // Insert Pantry Car at position 2
     consist.add(2, "Pantry");
-
-    System.out.println("\nAfter adding Pantry at position 2:");
-    System.out.println(consist);
-
-    // Remove first and last
     consist.removeFirst();
     consist.removeLast();
 
-    System.out.println("\nFinal Train Consist:");
+    System.out.println("\nFinal Train Consist (LinkedList):");
     System.out.println(consist);
+
+    // =========================
+    // UC5: LinkedHashSet (Ordered + Unique)
+    // =========================
+    Set<String> formation = new LinkedHashSet<>();
+
+    // Add bogies
+    formation.add("Engine");
+    formation.add("Sleeper");
+    formation.add("Cargo");
+    formation.add("Guard");
+
+    // Add duplicate
+    formation.add("Sleeper"); // ignored automatically
+
+    System.out.println("\nTrain Formation using LinkedHashSet:");
+    System.out.println(formation);
   }
 }
